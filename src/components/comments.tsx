@@ -10,7 +10,7 @@ export default function Comments(props: { id: number }): JSX.Element {
   useEffect(() => {
     async function getAllComments() {
       const data = await axios.get(
-        `https://pastebinserver.herokuapp.com/pastes/${props.id}/comments`
+        `https://serverpastebin.onrender.com/pastes/${props.id}/comments`
       );
       setAllComments(data.data);
     }
@@ -22,7 +22,7 @@ export default function Comments(props: { id: number }): JSX.Element {
       window.alert("Comment needs to be added for submission");
     } else {
       await axios.post(
-        `https://pastebinserver.herokuapp.com/pastes/${props.id}`,
+        `https://serverpastebin.onrender.com/pastes/${props.id}`,
         {
           comments: comment,
         }
@@ -33,7 +33,7 @@ export default function Comments(props: { id: number }): JSX.Element {
 
   async function deleteComment(commentId: number) {
     axios.delete(
-      `https://pastebinserver.herokuapp.com/pastes/${props.id}/comments/${commentId}`
+      `https://serverpastebin.onrender.com/pastes/${props.id}/comments/${commentId}`
     );
   }
 
