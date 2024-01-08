@@ -14,11 +14,11 @@ export default function Main(): JSX.Element {
   const [showMore, setShowMore] = useState<boolean>(false);
   const [showComments, setShowComments] = useState<boolean>(false);
 
-  const herokuURL = "https://pastebinserver.herokuapp.com/pastes";
+  const renderUrl = "https://serverpastebin.onrender.com/pastes";
 
   useEffect(() => {
     async function getAllPastes() {
-      const data = await axios.get(herokuURL);
+      const data = await axios.get(renderUrl);
       setPaste(data.data);
     }
     getAllPastes();
@@ -27,7 +27,7 @@ export default function Main(): JSX.Element {
   async function handleEdit(id: number) {
     setId(id);
     const data = await axios.get(
-      `https://pastebinserver.herokuapp.com/pastes/${id}`
+      `https://serverpastebin.onrender.com/pastes/${id}`
     );
     setCode(data.data[0].code);
     setTitle(data.data[0].title);
@@ -39,7 +39,7 @@ export default function Main(): JSX.Element {
     if (code === "") {
       window.alert("Code needs to be added for submission");
     } else {
-      await axios.post(herokuURL, {
+      await axios.post(renderUrl, {
         code: code,
         language: language,
         title: title,
@@ -55,7 +55,7 @@ export default function Main(): JSX.Element {
     if (code === "") {
       window.alert("Code needs to be added for submission");
     } else {
-      await axios.put(`https://pastebinserver.herokuapp.com/pastes/${id}`, {
+      await axios.put(`https://serverpastebin.onrender.com/pastes/${id}`, {
         code: code,
         language: language,
         title: title,
@@ -68,7 +68,7 @@ export default function Main(): JSX.Element {
   }
 
   async function handleDelete(id: number) {
-    axios.delete(`https://pastebinserver.herokuapp.com/pastes/${id}`);
+    axios.delete(`https://serverpastebin.onrender.com/pastes/${id}`);
   }
 
   function dropDownList(): JSX.Element {
